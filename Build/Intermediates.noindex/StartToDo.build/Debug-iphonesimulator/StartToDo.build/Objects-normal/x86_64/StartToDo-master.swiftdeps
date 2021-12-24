@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
+options: "7c210285ad91bfaec743ad1cdc75c0a36a39d4994ee93a2203d801d0d6081829"
+build_start_time: [1640372829, 21142005]
+build_end_time: [1640372829, 601976871]
+inputs:
+  "/Users/valentinalucinovic/Desktop/Swift/StartToDo/StartToDo/AppDelegate.swift": [1640366549, 361508846]
+  "/Users/valentinalucinovic/Desktop/Swift/StartToDo/StartToDo/SceneDelegate.swift": [1640366549, 364551544]
+  "/Users/valentinalucinovic/Desktop/Swift/StartToDo/StartToDo/ViewController.swift": [1640372787, 163836240]
