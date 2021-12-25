@@ -24,11 +24,16 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = .clear
+        var content = cell.defaultContentConfiguration()
+        content.text = "Это ячейка номер \(indexPath.row)"
+        content.textProperties.color = .white
+        cell.contentConfiguration = content
         return cell
     }
     
