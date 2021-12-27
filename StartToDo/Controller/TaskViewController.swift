@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TaskViewController: UIViewController {
 
@@ -16,7 +17,19 @@ class TaskViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
+        // Выходим из профиля
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+        // Закрываем экран
+        dismiss(animated: true, completion: nil)
     }
     
 }

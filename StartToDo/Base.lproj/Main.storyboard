@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -70,7 +71,6 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVp-3H-NAR"/>
-                                                    <segue destination="4xd-1B-Pow" kind="show" identifier="taskSegue" id="WtC-XM-5Ix"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gv7-h8-23Y">
@@ -115,6 +115,7 @@
                         <outlet property="emailTextField" destination="vTn-yf-OLf" id="mBG-GV-x7Q"/>
                         <outlet property="passwordTextField" destination="ibA-rV-meN" id="2st-Jv-oqk"/>
                         <outlet property="warnLabel" destination="9EM-vn-CAY" id="gV1-WV-ekJ"/>
+                        <segue destination="4xd-1B-Pow" kind="presentation" identifier="taskSegue" modalPresentationStyle="currentContext" id="UFJ-XS-ORK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -126,11 +127,11 @@
             <objects>
                 <viewController id="miv-oH-s45" customClass="TaskViewController" customModule="StartToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nvY-Ox-8r8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dDd-G0-VvW">
-                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.62183862919999999" green="0.5503152013" blue="0.97259479760000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" systemColor="secondarySystemBackgroundColor"/>
                                 <prototypes>
@@ -160,6 +161,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Задачи" id="b4Q-el-EmZ">
+                        <barButtonItem key="leftBarButtonItem" id="nHn-xO-aY2">
+                            <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                            <connections>
+                                <action selector="signOutTapped:" destination="miv-oH-s45" id="jow-mX-w8m"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kof-ky-7z8">
                             <connections>
                                 <action selector="addTapped:" destination="miv-oH-s45" id="rak-f6-jdY"/>
@@ -181,7 +188,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="eJ2-6U-jsO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nzg-Dt-ggR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.78046687240000001" green="0.76871594600000004" blue="0.97259479760000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
@@ -196,6 +203,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
