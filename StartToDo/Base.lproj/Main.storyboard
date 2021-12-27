@@ -11,8 +11,8 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="StartToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -69,6 +69,7 @@
                                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
+                                                    <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gVp-3H-NAR"/>
                                                     <segue destination="4xd-1B-Pow" kind="show" identifier="taskSegue" id="WtC-XM-5Ix"/>
                                                 </connections>
                                             </button>
@@ -80,6 +81,9 @@
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="registertapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tsr-Sr-SOp"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -107,6 +111,11 @@
                             <constraint firstItem="zgX-2g-fI8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="qiK-UO-T5w"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="vTn-yf-OLf" id="mBG-GV-x7Q"/>
+                        <outlet property="passwordTextField" destination="ibA-rV-meN" id="2st-Jv-oqk"/>
+                        <outlet property="warnLabel" destination="9EM-vn-CAY" id="gV1-WV-ekJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -151,8 +160,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Задачи" id="b4Q-el-EmZ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kof-ky-7z8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kof-ky-7z8">
+                            <connections>
+                                <action selector="addTapped:" destination="miv-oH-s45" id="rak-f6-jdY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="dDd-G0-VvW" id="Blk-d2-jJc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nke-k8-Gqf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
