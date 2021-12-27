@@ -19,6 +19,20 @@ class TaskViewController: UIViewController {
     }
     
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
+        // Реализация добавления задач через Alert Controller
+        let alertController = UIAlertController(title: "Новая задача", message: "Добавить новую задачу", preferredStyle: .alert)
+        alertController.addTextField()
+        let save = UIAlertAction(title: "Соxранить", style: .default) { _ in
+            guard let textField = alertController.textFields?.first, textField.text != "" else { return }
+            
+            ////
+        }
+        
+        let cancel = UIAlertAction(title: "Отменить", style: .default, handler: nil)
+        alertController.addAction(save)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func signOutTapped(_ sender: UIBarButtonItem) {
