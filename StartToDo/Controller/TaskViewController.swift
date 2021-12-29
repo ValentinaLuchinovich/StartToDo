@@ -9,23 +9,32 @@ import UIKit
 import Firebase
 
 class TaskViewController: UIViewController {
+    
+    var person: Person!
+    var ref: DatabaseReference!
+    var tasks = [Task]()
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let currentUser  = Auth.auth().currentUser else { return }
+        person = Person(user: currentUser)
+        ref = Database.database().reference(withPath: "users").child(person.uid).child("tasks")
     }
     
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
         // Реализация добавления задач через Alert Controller
         let alertController = UIAlertController(title: "Новая задача", message: "Добавить новую задачу", preferredStyle: .alert)
         alertController.addTextField()
-        let save = UIAlertAction(title: "Соxранить", style: .default) { _ in
+        let save = UIAlertAction(title: "Соxранить", style: .default) { [weak self] _ in
             guard let textField = alertController.textFields?.first, textField.text != "" else { return }
-            
-            ////
+            // Создаем данные
+            let task = Task(title: textField.text ?? "", userID: self?.person.uid ?? "")
+            // Создаем конкретную задачу
+            let taskRef = self?.ref.child(task.title.lowercased())
+            taskRef?.setValue(task.convertDictionary())
         }
         
         let cancel = UIAlertAction(title: "Отменить", style: .default, handler: nil)
