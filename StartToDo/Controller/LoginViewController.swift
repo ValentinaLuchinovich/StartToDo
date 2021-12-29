@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
+    
+    var ref: DatabaseReference!
 
     @IBOutlet weak var warnLabel: UILabel!
     
@@ -18,6 +20,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference(withPath: "users")
         // Рассчитывыем точную величину клавиатуры
         // Чтобы знать на сколько смещать контент при появлении клавиатуры
         // Клавиатура появилась на экране, применяем метод kbDidShow
@@ -105,16 +108,12 @@ class LoginViewController: UIViewController {
             return
         }
         // Реализуем сохоранение юзера в базу данных
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
             // В случае если регистрация прошла успещно переходим на следующий экран
-            if error == nil {
-                if user != nil {
-                } else {
-                    print("Пользователь не существует")
-                }
-            } else {
-                print(error!.localizedDescription)
-            }
+            guard error == nil, let uid = result?.user.uid else { return }
+            // Записываем данные о регистрации
+            let userRef = self?.ref.child(uid)
+            userRef?.setValue(["email": email])
         }
     }
     
