@@ -88,12 +88,37 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.textColor = .white
         let task = tasks[indexPath.row]
         let taskTitle = task.title
+        let isCompleted = task.completed
         cell.textLabel?.text = taskTitle
-        cell.accessoryType = task.completed ? .checkmark : .none
+        toggleCompletion(cell, isCompleted: isCompleted)
         
         return cell
     }
     
+    // Базовый функционал для удаления задач
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+    // Метод добавляет кнопку удаления
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let task = tasks[indexPath.row]
+            task.ref?.removeValue()
+        }
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else {return}
+        let task = tasks[indexPath.row]
+        let isCompleted = !task.completed
+        
+        toggleCompletion(cell, isCompleted: isCompleted)
+        task.ref?.updateChildValues(["completed": isCompleted])
+    }
+    
+    // Создаем галочку для выполнения задачи
+    func toggleCompletion(_ cell: UITableViewCell, isCompleted: Bool) {
+        cell.accessoryType = isCompleted ? .checkmark : .none
+    }
 }
